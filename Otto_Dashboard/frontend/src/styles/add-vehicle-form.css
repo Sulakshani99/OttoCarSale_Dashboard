@@ -1,0 +1,68 @@
+/* add-vehicle-form.css */
+.add-vehicle-form {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+  }
+  
+  .add-vehicle-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #233c5c;
+    text-align: center;
+  }
+  
+  .add-vehicle-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .add-vehicle-form form label {
+    margin-bottom: 10px;
+  }
+  
+  .add-vehicle-form form input,
+  .add-vehicle-form form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .add-vehicle-form form button[type="submit"] {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .dropzone-container {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .dropzone-container button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
