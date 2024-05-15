@@ -104,7 +104,7 @@ const CarItem = ({ item }) => {
         const confirmDelete = window.confirm("Are you sure you want to delete?");
         if (confirmDelete) {
           try {
-            const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNkYzhlNjRlNmVlNjA3OTg5NDNiYmEiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3MTUzMjU1ODYsImV4cCI6MTcxNTM2ODc4Nn0.owai6G8NgvL1OVBlw7CDTEbMQPNv3zDAlrU_km0zvjs"; // Replace "your_bearer_token_here" with your actual bearer token
+            const token = localStorage.getItem("token"); // Replace "your_bearer_token_here" with your actual bearer token
       
             // Set the request headers with the bearer token
             const config = {

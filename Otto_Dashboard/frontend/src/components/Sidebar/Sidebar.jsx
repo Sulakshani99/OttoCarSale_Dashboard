@@ -6,9 +6,10 @@ import logo from "../../assets/images/Logo/oriLogo.svg";
 import "./sidebar.css";
 
 const Sidebar = () => {
+  
   const handleLogout = async () => {
     try {
-      const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNkYWFkN2JkMzFkOTE1YzNiZTNhODAiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE3MTUzNjg2ODcsImV4cCI6MTcxNTQxMTg4N30.PDb11wybNlXqiWVYfG-vhL0rTgJmRD-QYz7HPv4uDNo"; // Replace with your actual bearer token
+      const token = localStorage.getItem("token"); // Replace with your actual bearer token
       const config = {
         headers: {
           Authorization: `Bearer ${token}`
