@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import axios from 'axios';
-import ForgetPassword from './ForgetPassword';
+import ForgetPassword from '../pages/ForgetPassword';
 
 // Mock axios post function
 jest.mock('axios');

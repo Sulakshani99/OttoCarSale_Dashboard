@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import Login from './Login';
+import Login from '../pages/Login';
 
 describe('Login Component', () => {
   it('renders without crashing', () => {
