@@ -17,9 +17,13 @@ import OrderDetails from "../pages/OrderDetails";
 import SellingPage from "../pages/SellingPage";
 import ForgetPassword from "../pages/ForgetPassword";
 import ResetPassword from "../pages/ResetPassword";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 const Router = () => {
   return (
+    
+
+    <Sidebar>
 
     <Routes>
       
@@ -44,6 +48,8 @@ const Router = () => {
       <Route path="*" element={<NotFound />} />
 
     </Routes>
+
+    </Sidebar>
   );
 };
 

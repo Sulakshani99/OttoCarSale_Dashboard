@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <Fragment>
     <div className="layout">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="main__layout">
         <TopNav />
 
