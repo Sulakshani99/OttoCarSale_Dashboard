@@ -132,7 +132,7 @@ const CarDetails = () => {
 
   return (
     <Helmet title={vehicleData.brand}>
-      <section className="car-details-container">
+      <section className="car1-details-container" >
         <Container>
           <Row>
             <Col lg="12">
@@ -140,6 +140,11 @@ const CarDetails = () => {
                 <Row>
                   <Col lg="12">
                   <form className="image-upload-form" >
+                    
+                  <h2 className="font-semibold">
+                   {vehicleData.brand} - {vehicleData.model}
+                  </h2>
+
                     <div className="car-image-container">
                       {vehicleData.album && vehicleData.album.length > 0 && (
                         <img
@@ -179,7 +184,7 @@ const CarDetails = () => {
 
                     <form
                       onSubmit={handleImageUpload}
-                      className="image-upload-form inline-table"
+                      className="image-upload-form"
                     >
                       <input
                         type="file"
@@ -196,9 +201,7 @@ const CarDetails = () => {
                   <Col lg="12">
                     <div className="car__item-content">
                       <form onSubmit={handleSubmit}>
-                        <h4>
-                          {vehicleData.brand} - {vehicleData.model}
-                        </h4>
+                        
 
                         <div className="car__item-info">
                           <div className="info-group">

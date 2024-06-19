@@ -1,4 +1,227 @@
+.car1-details-container {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background-color: #c2c7d0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+  }
+  
+  .car-details-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .car-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    /* width: 1000px; */
+    /* height: 500px; */
+  }
+  
+  .car-image {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .car-image1-container1 {
+    display: flex;
+    justify-content: space-around;
+    gap: 5px;
+    margin-bottom: 10px;
+    /* width: 500px; */
+    /* height: 400px; */
+  }
+  
+  .car-image1 {
+    max-width: 23%;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .car1__item-content {
+    margin-top: 30px;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .car__item-content h4 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .car__item-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .info-group {
+    flex: 1 1 calc(33.333% - 20px);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .info-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  .info-group input,
+  .info-group select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s;
+  }
+  
+  .info-group input:focus,
+  .info-group select:focus {
+    border-color: #007bff;
+  }
+  
+  .info-group input[type="checkbox"] {
+    width: auto;
+    padding: 0;
+    margin-top: 5px;
+  }
+  
+  .image-upload-form {
+    display: flex;
+    flex-direction: column;
+    /* justify-items: center; */
+    align-items: center;
+    margin-top: 3px;
+    margin-bottom: 15px;
+  }
+  
+  .image-upload-form input[type="file"] {
+    /* margin-right: 10px; */
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s;
+  }
+  
+  .image-upload-form input[type="file"]:focus {
+    border-color: #007bff;
+  }
+  
+  .image-upload-form button {
+    background-color: #021F61;
+    color: white;
+    border: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .image-upload-form button:hover {
+    background-color: #f9a826;
+    color: black;
+  }
+  
+  .back__btn {
+    background-color: #021F61;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .back__btn:hover {
+    background-color: #f9a826;
+    color: black;
+  }
+  
+  .submit__btn {
+    background-color: #f9a826;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .submit__btn:hover {
+    background-color: rgb(162, 43, 43);
+    color: white;
+  }
+  
+  /* .d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+  
+  .d1-flex {
+    display: flex;
+    justify-content: center;
+    gap: 1px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    /* width: 1200px; */
+  }
+  
+  
+  .info-group input[type="number"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s;
+    width: 100%;
+  }
+  
+  .info-group input[type="number"]:focus {
+    border-color: #007bff;
+  }
+  
+  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
 .main1 {
     position: relative;
     display: flex;
@@ -19,13 +242,13 @@
     padding: 24px;
 }
 
-/*checkbox to switch from sign up to login*/
+/*checkbox to switch from sign up to login
 
 #chk {
     display: none;
 }
 
-/*Login*/
+/*Login
 
 .login {
     position: relative;
@@ -59,7 +282,7 @@
     border-radius: 4px;
 }
 
-/*Register*/
+/*Register
 
 .register {
     background: #eee;
@@ -84,7 +307,7 @@
     transform: scale(.6);
 }
 
-/*Button*/
+/*Button
 
 .form button {
     width: 70%;
@@ -102,4 +325,4 @@
 
 .form button:hover {
     background-color: #f9a826;
-}
+} */

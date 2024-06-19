@@ -53,7 +53,7 @@
 }
 
 .nav__link:hover, .nav__active {
-  background: #ddd;
+  background: #f9a826;
 }
 
 .logout-button {
@@ -64,7 +64,7 @@
   width: 100%;
   padding: 10px;
   border: none;
-  background: #f9a826;
+  background: #021F61;
   color: white;
   border-radius: 4px;
   cursor: pointer;
@@ -72,7 +72,7 @@
 }
 
 .logout-button:hover {
-  background: #e53935;
+  background: #7f0d0b;
 }
 
 main {
