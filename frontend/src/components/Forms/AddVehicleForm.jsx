@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import CommonSection from '../components/UI/CommonSection';
-import Helmet from '../components/Helmet/Helmet';
+import CommonSection from '../UI/CommonSection';
+import Helmet from '../Helmet/Helmet';
 import axios from 'axios';
-import '../styles/add-vehicle.css';
+import '../../styles/add-vehicle.css';
 
 const AddVehicleForm = () => {
   const [formData, setFormData] = useState({

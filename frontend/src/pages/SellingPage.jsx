@@ -7,8 +7,8 @@ import van from "../assets/categories/van.svg";
 import cab from "../assets/categories/cab.svg";
 import truck from "../assets/categories/truck.svg";
 import moterbike from "../assets/categories/bikes.svg";
-import BecomeDriverSection from "../components/BecomeDriverSection";
-import VehicleSearch from "../components/VehicleSearch";
+import BecomeDriverSection from "../components/UI/BecomeDriverSection";
+import VehicleSearch from "../components/Search/VehicleSearch";
 
 const SellingPage = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Container, Row, Col, Button } from "reactstrap";
-import "../styles/searching__car-item.css";
+import "../../styles/searching__car-item.css";
 
 const VehicleSearch = () => {
   const [searchParams, setSearchParams] = useState({

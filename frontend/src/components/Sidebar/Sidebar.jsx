@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Axios from "axios";
 import navLinks from "../../assets/dummy-data/navLinks";
 import logo from "../../assets/images/Logo/oriLogo.svg";
-import "./sidebar.css";
+import "../../styles/sidebar.css";
 
 const Sidebar = () => {
   const handleLogout = async () => {

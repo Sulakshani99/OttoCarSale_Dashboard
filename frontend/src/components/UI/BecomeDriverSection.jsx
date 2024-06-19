@@ -1,8 +1,8 @@
 import React from "react";
-import "../styles/become-driver.css";
+import "../../styles/become-driver.css";
 import { Container, Row, Col } from "reactstrap";
 
-import saleImg from "../assets/images/sale.png";
+import saleImg from "../../assets/images/sale.png";
 // import { NavLink } from "react-router-dom";
 
 const BecomeDriverSection = () => {
