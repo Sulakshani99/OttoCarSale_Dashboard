@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Axios from "axios";
+// import Axios from "axios";
 import { FaBars, FaSignOutAlt } from "react-icons/fa";
 import navLinks from "../../assets/dummy-data/navLinks";
 import logo from "../../assets/images/Logo/oriLogo.svg";
@@ -10,24 +10,46 @@ const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true);
   const toggleSidebar = () => setIsOpen(!isOpen);
 
+  // const handleLogout = async () => {
+  //   try {
+  //     const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTg4OTMyMjAsImV4cCI6MTcxODk3OTYyMH0.WP1qonRc-BN__9Yfj7UitMepXNzp76oV_BomLRTdFfA";
+  //     // localStorage.getItem("token"); 
+  //     const config = {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     };
+  //     // Send a request to logout endpoint
+  //     await Axios.post("http://localhost:3001/api/v1/user/adminlogout", {}, config);
+  //     // Redirect user to login page or perform any other action after logout
+  //     console.log("Logout successful");
+  //     alert("Logout!");
+  //     window.location.href = "/main";
+  //   } catch (error) {
+  //     console.error("Error occurred during logout:", error);
+  //   }
+  // };
+
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem("token"); 
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      };
-      // Send a request to logout endpoint
-      await Axios.post("http://localhost:3001/api/v1/user/adminlogout", {}, config);
-      // Redirect user to login page or perform any other action after logout
-      console.log("Logout successful");
-      alert("Logout!");
-      window.location.href = "/main";
+      
+      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTg4OTMyMjAsImV4cCI6MTcxODk3OTYyMH0.WP1qonRc-BN__9Yfj7UitMepXNzp76oV_BomLRTdFfA";
+      localStorage.getItem("token");
+      if (token) {
+        // Remove the token from local storage
+        localStorage.removeItem("token");
+        console.log("Logout successful");
+        alert("Logout!");
+  
+        window.location.href = "/main"; // Change "/login" to the appropriate path
+      } else {
+        console.log("No token found");
+      }
     } catch (error) {
       console.error("Error occurred during logout:", error);
     }
   };
+  
 
   return (
     <div className="container">
