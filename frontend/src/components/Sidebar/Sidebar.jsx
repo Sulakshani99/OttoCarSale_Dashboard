@@ -12,7 +12,7 @@ const Sidebar = ({ children }) => {
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem("token"); // Replace with your actual bearer token
+      const token = localStorage.getItem("token"); 
       const config = {
         headers: {
           Authorization: `Bearer ${token}`
@@ -23,7 +23,7 @@ const Sidebar = ({ children }) => {
       // Redirect user to login page or perform any other action after logout
       console.log("Logout successful");
       alert("Logout!");
-      window.location.href = "/user";
+      window.location.href = "/main";
     } catch (error) {
       console.error("Error occurred during logout:", error);
     }
@@ -31,14 +31,16 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="container">
-      <div style={{ width: isOpen ? "250px" : "80px" }} className={`sidebar ${isOpen ? '' : 'sidebar-closed'}`}>
-        <div className="sidebar__top">
-          <h2 className="">
-            <img className="h-16" src={logo} alt="logo" style={{ display: isOpen ? "block" : "none" }} />
-          </h2>
-          <div className="bars" onClick={toggleSidebar}>
+      <div style={{ width: isOpen ? "250px" : "70px" }} className={`sidebar ${isOpen ? '' : 'sidebar-closed'}`}>
+      <div className="bars" onClick={toggleSidebar} style={{marginBottom:"20px"}}>
             <FaBars />
           </div>
+
+        <div className="sidebar__top"  style={{marginBottom:"30px"}}>
+          <h2 className={`logo ${isOpen ? '' : 'logo-small'}`}>
+            <img className="h-16" src={logo} alt="logo" />
+          </h2>
+          
         </div>
 
         <div className="sidebar__content">
@@ -59,7 +61,6 @@ const Sidebar = ({ children }) => {
               ))}
             </ul>
           </div>
-
           <div className="sidebar__bottom">
             <button onClick={handleLogout} className="logout-button w-full">
               <FaSignOutAlt />
@@ -74,60 +75,3 @@ const Sidebar = ({ children }) => {
 };
 
 export default Sidebar;
-
-
-
-
-// // Sidebar.jsx
-// import React, { useState } from "react";
-// import { NavLink } from "react-router-dom";
-// import navLinks from "../../assets/dummy-data/navLinks";
-// import logo from "../../assets/images/Logo/oriLogo.svg";
-// import "./sidebar.css";
-
-// const Sidebar = () => {
-//   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
-//   const toggleSidebar = () => {
-//     setIsSidebarOpen(!isSidebarOpen);
-//   };
-
-//   return (
-//     <div className={isSidebarOpen ? "sidebar open" : "sidebar"}>
-//       <div className="sidebar__top" onClick={toggleSidebar}>
-//         <h2>
-//           <img src={logo} alt="logo" className="logo"></img>
-//         </h2>
-//       </div>
-
-//       <div className="sidebar__content">
-//         <div className="menu">
-//           <ul className="nav__list">
-//             {navLinks.map((item, index) => (
-//               <li className="nav__item" key={index}>
-//                 <NavLink
-//                   to={item.path}
-//                   className="nav__link"
-//                   activeClassName="nav__active"
-//                 >
-//                   <i className={`${item.icon} icon`}></i>
-//                   {isSidebarOpen && <span className="nav__text">{item.display}</span>}
-//                 </NavLink>
-//               </li>
-//             ))}
-//           </ul>
-//         </div>
-
-//         <div className="sidebar__bottom">
-//           <span>
-//             <i className="ri-logout-circle-r-line icon"></i> 
-//             {isSidebarOpen && <span className="nav__text">Logout</span>}
-//           </span>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Sidebar;
-

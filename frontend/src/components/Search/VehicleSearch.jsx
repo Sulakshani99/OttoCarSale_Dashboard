@@ -29,13 +29,14 @@ const VehicleSearch = () => {
     }
 
     try {
+      const token = localStorage.getItem("token");
       const response = await axios.post(
         "http://localhost:3001/api/v1/vehicles/retrieveVehicles/${token}",
         searchParams,
         {
           headers: {
             // Pass the token if required by your backend API
-            // "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${token}`
           },
         }
       );

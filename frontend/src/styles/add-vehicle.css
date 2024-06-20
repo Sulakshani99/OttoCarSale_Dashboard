@@ -1,8 +1,8 @@
 .car1-details-container {
-    margin-top: 100px;
+    margin-top: 10px;
     margin-bottom: 100px;
-    background-color: #c2c7d0;
-    padding: 20px;
+    /* background-color: #c2c7d0; */
+    padding: 40px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -10,7 +10,7 @@
   }
   
   .car-details-content {
-    background-color: #ffffff;
+    background-color: #50507f21;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -121,6 +121,7 @@
     font-size: 1rem;
     color: #333;
     transition: border-color 0.3s;
+    background-color: #d5d6e0;
   }
   
   .image-upload-form input[type="file"]:focus {

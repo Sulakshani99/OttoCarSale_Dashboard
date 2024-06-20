@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import Helmet from "../Helmet/Helmet";
 import "../../styles/add-vehicle.css";
+import CommonSection from '../../components/UI/CommonSection';
 
 const AddVehicle = () => {
   const navigate = useNavigate();
@@ -120,6 +121,7 @@ const AddVehicle = () => {
 
   return (
     <Helmet title="Add Vehicle">
+      <CommonSection title="Add Vehicle" />
       <section className="car1-details-container">
         <Container>
           <Row>

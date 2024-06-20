@@ -1,5 +1,5 @@
-.car-details-container {
-  margin-top: 40px;
+.car2-details-container {
+  margin-top: 140px;
   background-color: #f8f9fa;
   padding: 20px;
   border-radius: 8px;
@@ -141,7 +141,7 @@
   color: black;
 }
 
-.back__btn {
+.back1__btn {
   background-color: #021F61;
   color: white;
   border: none;
@@ -152,8 +152,8 @@
   transition: background-color 0.3s;
 }
 
-.back__btn:hover {
-  background-color: rgb(78, 107, 154);
+.back1__btn:hover {
+  background-color: #4779af;
   color: black;
 }
 
@@ -182,7 +182,7 @@
 .d-flex {
   display: flex;
   justify-content: center;
-  gap: 1px;
+  gap: 0px;
   margin-top: 20px;
   /* width: 1200px; */
 }

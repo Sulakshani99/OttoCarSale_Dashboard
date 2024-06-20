@@ -132,7 +132,7 @@ const CarDetails = () => {
 
   return (
     <Helmet title={vehicleData.brand}>
-      <section className="car1-details-container" >
+      <section className="car2-details-container" >
         <Container>
           <Row>
             <Col lg="12">
@@ -419,7 +419,7 @@ const CarDetails = () => {
 
  
                           <div className="d-flex justify-center align-items-center">
-                            <button type="button" className="back__btn me-4">
+                            <button type="button" className="back1__btn me-4">
                               <Link to="/vehicles">Back</Link>
                             </button>
                             <button
