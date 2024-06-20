@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Container, Row, Col, Button } from "reactstrap";
 import "../../styles/searching__car-item.css";
+import Car from "../../assets/images/car-02.png";
 
-const VehicleSearch = () => {
+const VehicleSearch = (item) => {
   const [searchParams, setSearchParams] = useState({
     vehicleType: "",
     brand: "",
@@ -13,6 +14,7 @@ const VehicleSearch = () => {
     manufacturedYear: "",
   });
 
+  const { album = [] } = item;
   const [vehicles, setVehicles] = useState([]);
   const [error, setError] = useState("");
 
@@ -43,7 +45,7 @@ const VehicleSearch = () => {
         }
       );
       setVehicles(response.data);
-      setError("");
+      
     } catch (error) {
       console.error("Error fetching vehicles:", error);
       setError("Error fetching vehicles. Please try again.");
@@ -76,11 +78,11 @@ const VehicleSearch = () => {
                     onChange={handleInputChange}
                   >
                     <option value="">Vehicle Type</option>
-                    <option value="car">Car</option>
-                    <option value="bike">Bike</option>
-                    <option value="truck">Truck</option>
-                    <option value="cab">Cab</option>
-                    <option value="van">Van</option>
+                    <option value="Car">Car</option>
+                    <option value="Bike">Bike</option>
+                    <option value="Truck">Truck</option>
+                    <option value="Cab">Cab</option>
+                    <option value="Van">Van</option>
                   </select>
                   <input
                     style={{ margin: "10px", padding: "10px", flex: "1", cursor: "pointer" }}
@@ -157,11 +159,15 @@ const VehicleSearch = () => {
             <Col key={vehicle.vehicleId} lg="3" md="4" sm="6">
               <div className="searching___car-list">
                 <div className="car__item" style={{ width: "250px", margin: "10px" }}>
+
                   <div className="car__image">
-                    {vehicle.album.length > 0 && (
-                      <img src={vehicle.album[0].photoURL} alt={`Image 1`} className="w-100" />
+                    {album && album.length > 0 ? (
+                      <img src={album[0].photoURL} alt="Vehicle" className="w-100" />
+                    ) : (
+                      <img src={Car} alt="Default Car" className="w-100" />
                     )}
                   </div>
+
                   <div className="car__item-content mt-4">
                     <h4 className="section__title text-center">{vehicle.brand}</h4>
                     <div className="car__item-info car--details d-flex align-items-center justify-content-between align-baseline mt-3 mb-4 ml-3 mr-10">
