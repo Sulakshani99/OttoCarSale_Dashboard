@@ -32,7 +32,7 @@ const Sidebar = ({ children }) => {
   return (
     <div className="container">
       <div style={{ width: isOpen ? "250px" : "70px" }} className={`sidebar ${isOpen ? '' : 'sidebar-closed'}`}>
-      <div className="bars" onClick={toggleSidebar} style={{marginBottom:"20px"}}>
+      <div className="bars" onClick={toggleSidebar} style={{marginBottom:"20px",cursor:"pointer"}}>
             <FaBars />
           </div>
 
