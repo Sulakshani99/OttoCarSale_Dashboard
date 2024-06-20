@@ -17,7 +17,7 @@ const SellingPage = () => {
       <section>
       <div className="justify-center flex-col row-span-2">
         <div className="cate-main">
-          <h2>Main Categories in sale</h2>
+          <h2>Main Categories</h2>
         </div>
         <div className="main-section">
           <a href="/cars">
