@@ -71,7 +71,7 @@ car-details.css
   border-radius: 0;
   background-color: #fbfafaeb;
   width: 250px;
-  height: 315px;
+  /* height: 315px; */
 }
 
 .car__item-info span i {
@@ -116,12 +116,36 @@ car-details.css
   font-weight: 600;
 }
 
+
 .selling__car-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  column-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid columns */
+  column-gap: 4rem;
   row-gap: 2rem;
 }
+
+@media (max-width: 1200px) {
+  .selling__car-list {
+    grid-template-columns: repeat(3, 1fr); /* Three columns for medium screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .selling__car-list {
+    grid-template-columns: repeat(2, 1fr); /* Two columns for small screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .selling__car-list {
+    grid-template-columns: 1fr; /* One column for extra small screens */
+  }
+}
+
+
+
+
+
 
 @media only screen and (max-width: 992px) {
   .car__item h4 {

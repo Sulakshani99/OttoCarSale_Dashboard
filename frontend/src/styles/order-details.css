@@ -1,0 +1,56 @@
+src/styles/order-details.css
+
+.order-details-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #231e1e;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background: #fff;
+    /* width: 1100px; */
+  }
+  
+  .order-details-header {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #233c5c;
+    text-align: center;
+  }
+  
+  .order-details-label {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .order-details-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .order-details-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .order-details-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #233c5c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
