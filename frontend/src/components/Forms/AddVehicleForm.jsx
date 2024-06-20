@@ -257,7 +257,7 @@ const AddVehicle = () => {
                             />
                           </div>
                           <div className="info-group">
-                            <label htmlFor="vehiclePrice">Vehicle Price: </label>
+                            <label htmlFor="vehiclePrice">Vehicle Price (Rs): </label>
                             <input
                               type="text"
                               name="vehiclePrice"
