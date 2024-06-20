@@ -56,7 +56,7 @@ const VehicleSearch = () => {
   };
 
   return (
-    <section className="become__driver" style={{ marginTop: "100px", background: "#f0f0f8" }}>
+    <section className="become__driver" style={{ marginTop: "30px", background: "#f0f0f8" }}>
       <Container>
         <Row>
           <Col lg="6" md="6" sm="12">

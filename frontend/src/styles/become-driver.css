@@ -4,53 +4,112 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 80px 0px;
-  /* width: 800px; */
+  padding: 80px 0;
 }
 
-.become__driver button {
-  background: #fff;
-  color: #021F61;
-  font-weight: 600;
+.become__driver-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
-.become__driver-btn a {
-  text-decoration: none;
+
+.become__driver-img {
+  grid-column: 1 / 2;
+  position: relative;
+}
+
+.become__driver-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.become__driver-content {
+  grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+}
+
+.content-inner {
+  padding: 0 30px;
+}
+
+.section__title {
   color: #fff;
-}
-
-.become__driver-title {
   font-size: 2.8rem;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+.text-white {
   color: #fff;
-  line-height: 65px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.button-group {
+  margin-top: 30px;
+}
+
+.button-group a {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  color: #021F61;
+  background: #fff;
+  font-weight: 600;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-group a.btn-primary {
+  background-color: #fff;
+  color: #021F61;
+}
+
+.button-group a.btn-secondary {
+  background-color: #fff;
+  color: #021F61;
+}
+
+.button-group a:hover {
+  background-color: #ffc107; /* Yellow background on hover */
+  color: #000; /* Black text on hover */
 }
 
 @media only screen and (max-width: 992px) {
-  .become__driver-title {
-    font-size: 1.5rem;
-    line-height: 3rem;
+  .become__driver-grid {
+    grid-template-columns: 1fr;
   }
-}
-
-@media only screen and (max-width: 768px) {
-  .become__driver {
-    padding: 50px 0px;
+  
+  .become__driver-img {
+    grid-column: 1 / 2;
   }
 
-  .become__driver-title {
-    font-size: 1.3rem;
-    line-height: 2.5rem;
-  }
-
-  .become__driver-btn {
-    font-size: 0.8rem !important;
+  .become__driver-content {
+    grid-column: 1 / 2;
+    margin-top: 50px;
   }
 }
 
 @media only screen and (max-width: 576px) {
-  .become__driver-img {
-    display: none;
+  .section__title {
+    font-size: 2rem;
   }
-  .become__driver {
-    text-align: center;
+  
+  .text-white {
+    font-size: 1rem;
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button-group a {
+    margin-bottom: 10px;
   }
 }
