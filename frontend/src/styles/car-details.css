@@ -158,8 +158,8 @@
 }
 
 .submit__btn {
-  background-color: #f9a826;
-  color: black;
+  background-color: #021F61;
+  color: rgb(243, 236, 236);
   border: none;
   padding: 10px 20px;
   text-decoration: none;
@@ -169,8 +169,8 @@
 }
 
 .submit__btn:hover {
-  background-color: rgb(162, 43, 43);
-  color: white;
+  background-color: #f9a826;
+  color: rgb(15, 14, 14);
 }
 
 /* .d-flex {
@@ -183,7 +183,7 @@
   display: flex;
   justify-content: center;
   gap: 0px;
-  margin-top: 20px;
+  margin-top: 7px;
   /* width: 1200px; */
 }
 

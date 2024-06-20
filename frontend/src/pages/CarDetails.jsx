@@ -5,9 +5,11 @@ import { Col, Container, Row } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import "../styles/car-details.css";
 import Loading from "../components/UI/Loading";
+import { useNavigate } from "react-router-dom";
 
 const CarDetails = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [vehicleData, setVehicleData] = useState({
     vehicleId: "",
@@ -25,10 +27,10 @@ const CarDetails = () => {
     },
     condition: "",
     vehiclePrice: "",
-    fuelType: "select type",
+    fuelType: "Petrol",
     manufacturedCountry: "",
     assembled: false,
-    vehicleType: "car",
+    vehicleType: "Car",
     brand: "",
     style: "",
     model: "",
@@ -57,7 +59,7 @@ const CarDetails = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // If the input field is for height, width, or length, convert the value to a float
+  
     if (["height", "width", "length"].includes(name)) {
       setVehicleData({
         ...vehicleData,
@@ -79,7 +81,8 @@ const CarDetails = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
+      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTg4OTMyMjAsImV4cCI6MTcxODk3OTYyMH0.WP1qonRc-BN__9Yfj7UitMepXNzp76oV_BomLRTdFfA";
+      // localStorage.getItem("token");
 
       const config = {
         headers: {
@@ -94,6 +97,8 @@ const CarDetails = () => {
       );
 
       console.log("Updated Form Data:", vehicleData);
+      alert("Vehicle updateded successfully");
+      navigate("/selling");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -383,13 +388,11 @@ const CarDetails = () => {
                               value={vehicleData.vehicleType}
                               onChange={handleChange}
                             >
-                              <option value="car">Car</option>
-                              <option value="motorcycle">Motorcycle</option>
-                              <option value="truck">Truck</option>
-                              <option value="bus">Bus</option>
-                              <option value="van">Van</option>
-                              <option value="suv">SUV</option>
-                              <option value="other">Other</option>
+                              <option value="Car">Car</option>
+                              <option value="Bike">Motorcycle</option>
+                              <option value="Truck">Truck</option>
+                              <option value="Van">Van</option>
+                              <option value="Cab">Cab</option>
                             </select>
                           </div>
                           <div className="info-group">
@@ -427,9 +430,9 @@ const CarDetails = () => {
 
  
                           <div className="d-flex justify-center align-items-center">
-                            <button type="button" className="back1__btn me-4">
+                            {/* <button type="button" className="back1__btn me-4">
                               <Link to="/vehicles">Back</Link>
-                            </button>
+                            </button> */}
                             <button
                               type="submit"
                               className="submit__btn" onClick={handleSubmit}

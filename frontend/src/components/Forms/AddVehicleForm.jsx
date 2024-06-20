@@ -14,9 +14,9 @@ const AddVehicle = () => {
     engineNo: "",
     vehicleState: "",
     companyName: "",
-    numberOfDoors: 0,
+    numberOfDoors: 1,
     color: "",
-    seatingCapacity: 0,
+    seatingCapacity: 1,
     dimensions: {
       length: 0,
       width: 0,
@@ -24,10 +24,10 @@ const AddVehicle = () => {
     },
     condition: "",
     vehiclePrice: "",
-    fuelType: "select type",
+    fuelType: "Petrol",
     manufacturedCountry: "",
     assembled: false,
-    vehicleType: "car",
+    vehicleType: "Car",
     brand: "",
     style: "",
     model: "",
@@ -61,7 +61,8 @@ const AddVehicle = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token");
+      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTg4OTMyMjAsImV4cCI6MTcxODk3OTYyMH0.WP1qonRc-BN__9Yfj7UitMepXNzp76oV_BomLRTdFfA";
+      // localStorage.getItem("token");
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -303,13 +304,11 @@ const AddVehicle = () => {
                               value={vehicleData.vehicleType}
                               onChange={handleChange}
                             >
-                              <option value="car">Car</option>
-                              <option value="motorcycle">Motorcycle</option>
-                              <option value="truck">Truck</option>
-                              <option value="bus">Bus</option>
-                              <option value="van">Van</option>
-                              <option value="suv">SUV</option>
-                              <option value="other">Other</option>
+                              <option value="Car">Car</option>
+                              <option value="Bike">Motorcycle</option>
+                              <option value="Truck">Truck</option>
+                              <option value="Van">Van</option>
+                              <option value="Cab">Cab</option>
                             </select>
                           </div>
                           <div className="info-group">

@@ -29,7 +29,9 @@ const VehicleSearch = () => {
     }
 
     try {
-      const token = localStorage.getItem("token");
+      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTg4OTMyMjAsImV4cCI6MTcxODk3OTYyMH0.WP1qonRc-BN__9Yfj7UitMepXNzp76oV_BomLRTdFfA";
+      // localStorage.getItem("token");
+
       const response = await axios.post(
         "http://localhost:3001/api/v1/vehicles/retrieveVehicles/${token}",
         searchParams,

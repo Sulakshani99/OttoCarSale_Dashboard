@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 import Helmet from '../components/Helmet/Helmet';
 import '../styles/order-details.css';
 import Loading from "../components/UI/Loading";
+import { useNavigate } from "react-router-dom";
 
 const OrderDetails = () => {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [order, setOrder] = useState(null);
   const [status, setStatus] = useState("");
   const [newMessage, setNewMessage] = useState("");
@@ -34,22 +36,30 @@ const OrderDetails = () => {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      const updatedOrder = { ...order, status };
+      const updatedOrder = { ...order, newStatus: status, massage: newMessage };
       if (newMessage) {
         updatedOrder.chatBox.push({ message: newMessage, owner: 'owner' });
       }
-      await axios.put(`http://localhost:3001/api/v1/orders/editOrder/${slug}`, updatedOrder);
+  
+      // Log the updated order before sending the request
+      console.log("Updated Order: ", updatedOrder);
+  
+      const response = await axios.put(`http://localhost:3001/api/v1/orders/editOrder/${slug}`, updatedOrder);
+      console.log("Response from server: ", response.data); // Log the response data for debugging
+  
       alert("Order details updated successfully");
       setOrder(updatedOrder);
       setNewMessage("");
+      navigate("/orders");
     } catch (error) {
       console.error("Error updating order details:", error);
       alert("Failed to update order details. Please try again later.");
     }
   };
+  
 
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
   }
 
   if (!order) {
@@ -143,7 +153,7 @@ const OrderDetails = () => {
                 </div>
 
                 <h4>Chat Box</h4>
-                <div style={{ maxHeight: '300px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px', borderRadius: '5px', marginBottom: '10px' }}>
+                {/* <div style={{ maxHeight: '300px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px', borderRadius: '5px', marginBottom: '10px' }}>
                   {order.chatBox && order.chatBox.length > 0 ? (
                     order.chatBox.map((chat, index) => (
                       <div key={index} style={{ textAlign: chat.owner === 'owner' ? 'right' : 'left' }}>
@@ -163,16 +173,32 @@ const OrderDetails = () => {
                   ) : (
                     <p>No messages</p>
                   )}
+                </div> */}
+
+               <div style={{ maxHeight: '300px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px', borderRadius: '5px', marginBottom: '10px' }}>
+                  {order.chatBox && order.chatBox.length > 0 ? (
+                    order.chatBox.map((chat, index) => (
+                      <div key={index} style={{ marginBottom: '10px' }}>
+                        <strong>{chat.owner || "Owner"}: </strong>
+                        <span>{chat.message}</span>
+                      </div>
+                    ))
+                  ) : (
+                    <p>No messages in the chat box.</p>
+                  )}
                 </div>
+                
 
                 <div style={{ marginBottom: '20px' }}>
-                  <div>
+
+                  {/* <div>
                     {order.chatBox.map((chat, index) => (
                       <div key={index} style={{ marginBottom: '10px' }}>
                         <strong>{chat.owner}</strong>: {chat.message}
                       </div>
                     ))}
-                  </div>
+                  </div> */}
+
                   <div>
                     <label className="order-details-label" htmlFor="newMessage">Add a message</label>
                     <textarea className="order-details-input" name="newMessage" value={newMessage} onChange={(e) => setNewMessage(e.target.value)} style={{ width: '100%', padding: '10px', fontSize: '16px', border: '1px solid #ccc', borderRadius: '5px' }}></textarea>

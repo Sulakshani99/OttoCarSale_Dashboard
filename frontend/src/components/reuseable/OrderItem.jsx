@@ -18,7 +18,7 @@ const OrderItem = ({ item }) => {
         await axios.delete(`http://localhost:3001/api/v1/orders/deleteOrder/${_id}`);
         alert("Order deleted successfully");
         console.log("Order deleted successfully");
-        // Optionally, you can update the state or perform other actions after deletion
+        window.location.reload(); // Refresh the page after deletion
       } catch (error) {
         console.error("Error deleting order:", error);
       }
