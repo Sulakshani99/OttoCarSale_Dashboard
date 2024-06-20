@@ -4,9 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 import Helmet from "../components/Helmet/Helmet";
 import "../styles/car-details.css";
+import Loading from "../components/UI/Loading";
 
 const CarDetails = () => {
   const { slug } = useParams();
+  const [loading, setLoading] = useState(true);
   const [vehicleData, setVehicleData] = useState({
     vehicleId: "",
     chassisNumber: "",
@@ -42,8 +44,10 @@ const CarDetails = () => {
           `http://localhost:3001/api/v1/vehicles/findOneVehicle/${slug}`
         );
         setVehicleData(singleCarItem.data[0]);
+        setLoading(false);
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     };
 
@@ -129,6 +133,10 @@ const CarDetails = () => {
       console.error("Error uploading image:", error);
     }
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <Helmet title={vehicleData.brand}>

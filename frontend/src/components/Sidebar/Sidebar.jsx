@@ -55,7 +55,7 @@ const Sidebar = ({ children }) => {
                     }
                   >
                     <i className={item.icon}></i>
-                    <span style={{ display: isOpen ? "inline" : "none" }}>{item.display}</span>
+                    <span style={{ marginLeft:"15px", display: isOpen ? "inline" : "none" }}>{item.display}</span>
                   </NavLink>
                 </li>
               ))}

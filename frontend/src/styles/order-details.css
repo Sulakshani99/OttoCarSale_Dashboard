@@ -43,7 +43,7 @@ src/styles/order-details.css
     margin-bottom: 20px;
   }
   
-  .order-details-button {
+  /* .order-details-button {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -53,4 +53,23 @@ src/styles/order-details.css
     border-radius: 5px;
     cursor: pointer;
   }
+   */
+   
+  .order-details-save-button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #233c5c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 10%;
+  }
+
+  .order-details-save-button:hover {
+    background-color: #f9a826;
+    color: #231e1e;
+} 
   

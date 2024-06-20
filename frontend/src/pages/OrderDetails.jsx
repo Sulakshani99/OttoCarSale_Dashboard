@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Helmet from '../components/Helmet/Helmet';
 import '../styles/order-details.css';
+import Loading from "../components/UI/Loading";
 
 const OrderDetails = () => {
   const { slug } = useParams();
@@ -48,11 +49,7 @@ const OrderDetails = () => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>{error}</p>;
+    return <Loading/>;
   }
 
   if (!order) {
@@ -147,27 +144,27 @@ const OrderDetails = () => {
 
                 <h4>Chat Box</h4>
                 <div style={{ maxHeight: '300px', overflowY: 'auto', border: '1px solid #ccc', padding: '10px', borderRadius: '5px', marginBottom: '10px' }}>
-                    {order.chatBox && order.chatBox.length > 0 ? (
-                      order.chatBox.map((chat, index) => (
-                        <div key={index} style={{ textAlign: chat.owner === 'owner' ? 'right' : 'left' }}>
-                          <p style={{
-                            margin: '5px 0',
-                            padding: '10px',
-                            background: chat.owner === 'owner' ? '#e1f5fe' : '#fff',
-                            borderRadius: '10px',
-                            display: 'inline-block',
-                            maxWidth: '80%',
-                            textAlign: chat.owner === 'owner' ? 'right' : 'left'
-                          }}>
-                            {chat.message}
-                          </p>
-                        </div>
-                      ))
-                    ) : (
-                      <p>No messages</p>
-                    )}
-                  </div>
-                  
+                  {order.chatBox && order.chatBox.length > 0 ? (
+                    order.chatBox.map((chat, index) => (
+                      <div key={index} style={{ textAlign: chat.owner === 'owner' ? 'right' : 'left' }}>
+                        <p style={{
+                          margin: '5px 0',
+                          padding: '10px',
+                          background: chat.owner === 'owner' ? '#e1f5fe' : '#fff',
+                          borderRadius: '10px',
+                          display: 'inline-block',
+                          maxWidth: '80%',
+                          textAlign: chat.owner === 'owner' ? 'right' : 'left'
+                        }}>
+                          {chat.message}
+                        </p>
+                      </div>
+                    ))
+                  ) : (
+                    <p>No messages</p>
+                  )}
+                </div>
+
                 <div style={{ marginBottom: '20px' }}>
                   <div>
                     {order.chatBox.map((chat, index) => (
@@ -182,7 +179,7 @@ const OrderDetails = () => {
                   </div>
                 </div>
 
-                <button onClick={handleSave} style={{ width: '100%', padding: '10px', fontSize: '16px', backgroundColor: '#233c5c', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+                <button onClick={handleSave} className="order-details-save-button">
                   Save
                 </button>
               </div>

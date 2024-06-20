@@ -51,6 +51,7 @@
 
 .nav__item {
   margin-bottom: 30px;
+
 }
 
 .nav__link {
@@ -61,10 +62,11 @@
   padding: 10px;
   border-radius: 4px;
   transition: background 0.3s;
+  background-color: #4e507f17;
 }
 
 .nav__link:hover, .nav__active {
-  background: #f9a826;
+  background: #f9a826b5;
 }
 
 .logout-button {
@@ -86,7 +88,7 @@
 }
 
 main {
-  margin-left: 125px;
+  margin-left: 140px;
   transition: margin-left 0.3s;
 }
 

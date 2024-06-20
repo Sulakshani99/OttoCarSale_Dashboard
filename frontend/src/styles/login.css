@@ -88,7 +88,7 @@
 
 /*Button*/
 
-.form button {
+/* .form button {
     width: 70%;
     height: 40px;
     margin: 5px auto;
@@ -100,8 +100,8 @@
     border-radius: 4px;
     cursor: pointer;
     transition: .2s ease-in;
-}
+} */
 
-.form button:hover {
+/* .form button:hover {
     background-color: #f9a826;
-}
+} */
