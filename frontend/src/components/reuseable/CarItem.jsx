@@ -102,11 +102,11 @@ const CarItem = ({ item }) => {
   return (
     <div className="car__item">
       <div className="car__image">
-        <div className="">
+        <div className="car-image-container">
           {album && album.length > 0 ? (
             <img src={album[0].photoURL} alt="Vehicle" className="w-100" />
           ) : (
-            <img src={Car} alt="Default Car" className="w-100" />
+            <img src={Car} alt="Default Car" className="w-100 h-10" />
           )}
         </div>
       </div>
