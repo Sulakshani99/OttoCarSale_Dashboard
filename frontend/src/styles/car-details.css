@@ -108,7 +108,7 @@
   flex-direction: column;
   /* justify-items: center; */
   align-items: center;
-  margin-top: 70px;
+  margin-top: 10px;
 }
 
 .image-upload-form input[type="file"] {
@@ -185,6 +185,7 @@
   justify-content: center;
   gap: 0px;
   margin-top: 7px;
+  margin-bottom: 30px;
   /* width: 1200px; */
 }
 

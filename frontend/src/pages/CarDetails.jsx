@@ -156,7 +156,7 @@ const CarDetails = () => {
                     
                   
 
-                    <div className="car-image-container">
+                    <div className="car-image-container" style={{marginTop:"100px"}}>
                       {vehicleData.album && vehicleData.album.length > 0 && (
                         <img
                           src={vehicleData.album[0].photoURL}
