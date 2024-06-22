@@ -154,9 +154,7 @@ const CarDetails = () => {
                   <Col lg="12">
                   <form className="image-upload-form" >
                     
-                  <h2 className="font-semibold">
-                   {vehicleData.brand} - {vehicleData.model}
-                  </h2>
+                  
 
                     <div className="car-image-container">
                       {vehicleData.album && vehicleData.album.length > 0 && (
@@ -213,7 +211,12 @@ const CarDetails = () => {
                 <Row>
                   <Col lg="12">
                     <div className="car__item-content">
+                      
                       <form onSubmit={handleSubmit}>
+
+                      <h4 className="font-semibold">
+                   {vehicleData.brand} - {vehicleData.model}
+                  </h4>
                         
 
                         <div className="car__item-info">

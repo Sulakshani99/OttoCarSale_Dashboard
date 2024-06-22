@@ -65,7 +65,7 @@ src/styles/order-details.css
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 10%;
+    width: 35%;
   }
 
   .order-details-save-button:hover {

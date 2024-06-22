@@ -4,7 +4,7 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
+  display: contents;
   justify-content: center;
 }
 
@@ -13,6 +13,7 @@
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  display: contents;
 }
 
 .car-image-container {
@@ -107,7 +108,7 @@
   flex-direction: column;
   /* justify-items: center; */
   align-items: center;
-  margin-top: 3px;
+  margin-top: 70px;
 }
 
 .image-upload-form input[type="file"] {

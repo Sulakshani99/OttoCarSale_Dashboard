@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../styles/order.css";
-import Car from "../../assets/images/car-02.png";
 import axios from "axios";
+import "../../styles/order.css";
 
 const OrderItem = ({ item }) => {
   if (!item) {
     return null; // If item is undefined, return null to render nothing
   }
-    
-  const { orderedDate, customerName, customerID, vehicleBrand,  _id } = item;
+
+  const { orderedDate, customerName, _id } = item;
 
   const handleDelete = async () => {
     const confirmDelete = window.confirm("Are you sure you want to delete?");
@@ -27,17 +26,8 @@ const OrderItem = ({ item }) => {
 
   return (
     <div className="order__item">
-
-      <div className="order__image">
-        {/* <img src={Car} alt="" className="w-100" /> */}
-      </div>
-      
-      <div className="order__item-content mt-4">
-        <div className="order__item-info order--details d-flex align-items-center justify-content-between align-baseline mt-3 mb-4 ml-3 mr-10">
-          {/* <div className="order__item-data">
-            <span className="order__item-label">Customer ID:</span>
-            <span className="order__item-value">{customerID}</span>
-          </div> */}
+      <div className="order__item-content">
+        <div className="order__item-info">
           <div className="order__item-data">
             <span className="order__item-label">Ordered Date:</span>
             <span className="order__item-value">{orderedDate}</span>
@@ -46,18 +36,14 @@ const OrderItem = ({ item }) => {
             <span className="order__item-label">Customer Name:</span>
             <span className="order__item-value">{customerName}</span>
           </div>
-          
-          <div style={{}}>
-          <div className="order__item-actions flex flex-row justify-end items-end mx-auto">
-            <button className="order__item-btn order__btn-rent order__item-btn-rent ">
-              <Link to={`/orders/${_id}`}>Edit</Link>
-            </button>
-            <button onClick={handleDelete} className="order__item-btn order__btn-details order__item-btn-details">
-              Delete
-            </button>
-          </div>
-          </div>
-
+        </div>
+        <div className="order__item-actions">
+          <button className="order__item-btn order__btn-rent">
+            <Link to={`/orders/${_id}`}>Edit</Link>
+          </button>
+          <button onClick={handleDelete} className="order__item-btn order__btn-details">
+            Delete
+          </button>
         </div>
       </div>
     </div>
@@ -65,6 +51,7 @@ const OrderItem = ({ item }) => {
 };
 
 export default OrderItem;
+
 
 
 
