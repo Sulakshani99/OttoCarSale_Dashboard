@@ -61,7 +61,7 @@ const AddVehicle = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = "YOUR_TOKEN_HERE";
+      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTkzMjYwMzUsImV4cCI6MTcxOTQxMjQzNX0.kuw6Ez2YPI4eU62Af2vf0Lgc9rc12qGU2DT-5qTVWIg";
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -100,7 +100,8 @@ const AddVehicle = () => {
       const formData = new FormData();
       formData.append("image", selectedImage, imageName);
 
-      const token = localStorage.getItem("token");
+      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTkzMjYwMzUsImV4cCI6MTcxOTQxMjQzNX0.kuw6Ez2YPI4eU62Af2vf0Lgc9rc12qGU2DT-5qTVWIg";
+      // localStorage.getItem("token");
 
       const config = {
         headers: {
@@ -135,47 +136,209 @@ const AddVehicle = () => {
                       </form>
                       <form onSubmit={handleSubmit}>
                         <div className="car__item-info">
-                          {/* All input fields go here */}
-                          {Object.keys(vehicleData).map((key) => (
-                            key !== "dimensions" ? (
-                              <div className="info-group" key={key}>
-                                <label htmlFor={key}>{key.split(/(?=[A-Z])/).join(" ")}:</label>
-                                <input
-                                  type={key === "assembled" ? "checkbox" : "text"}
-                                  name={key}
-                                  value={vehicleData[key]}
-                                  onChange={key === "assembled" ? handleCheckboxChange : handleChange}
-                                  checked={key === "assembled" ? vehicleData[key] : undefined}
-                                />
-                              </div>
-                            ) : (
-                              ["length", "width", "height"].map((dim) => (
-                                <div className="info-group" key={dim}>
-                                  <label htmlFor={dim}>{dim.charAt(0).toUpperCase() + dim.slice(1)} (m):</label>
-                                  <input
-                                    type="number"
-                                    step="0.01"
-                                    name={dim}
-                                    value={vehicleData.dimensions[dim]}
-                                    onChange={handleChange}
-                                  />
-                                </div>
-                              ))
-                            )
-                          ))}
+                          <div className="info-group">
+                            <label htmlFor="vehicleId">Vehicle ID: </label>
+                            <input
+                              type="text"
+                              name="vehicleId"
+                              value={vehicleData.vehicleId}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="chassisNumber">Chassis Number: </label>
+                            <input
+                              type="text"
+                              name="chassisNumber"
+                              value={vehicleData.chassisNumber}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="engineNo">Engine No: </label>
+                            <input
+                              type="text"
+                              name="engineNo"
+                              value={vehicleData.engineNo}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="vehicleState">Vehicle State: </label>
+                            <input
+                              type="text"
+                              name="vehicleState"
+                              value={vehicleData.vehicleState}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="companyName">Company Name: </label>
+                            <input
+                              type="text"
+                              name="companyName"
+                              value={vehicleData.companyName}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="numberOfDoors">No. of Doors: </label>
+                            <input
+                              type="number"
+                              name="numberOfDoors"
+                              value={vehicleData.numberOfDoors}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="color">Color: </label>
+                            <input
+                              type="text"
+                              name="color"
+                              value={vehicleData.color}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="seatingCapacity">Seating Capacity: </label>
+                            <input
+                              type="number"
+                              name="seatingCapacity"
+                              value={vehicleData.seatingCapacity}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="condition">Condition: </label>
+                            <input
+                              type="text"
+                              name="condition"
+                              value={vehicleData.condition}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="manufacturedYear">Manufactured Year: </label>
+                            <input
+                              type="text"
+                              name="manufacturedYear"
+                              value={vehicleData.manufacturedYear}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="height">Height (m): </label>
+                            <input
+                              type="number"
+                              step="0.01"
+                              name="height"
+                              value={vehicleData.dimensions.height}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="width">Width (m): </label>
+                            <input
+                              type="number"
+                              step="0.01"
+                              name="width"
+                              value={vehicleData.dimensions.width}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="length">Length (m): </label>
+                            <input
+                              type="number"
+                              step="0.01"
+                              name="length"
+                              value={vehicleData.dimensions.length}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="vehiclePrice">Vehicle Price (Rs): </label>
+                            <input
+                              type="text"
+                              name="vehiclePrice"
+                              value={vehicleData.vehiclePrice}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="fuelType">Fuel Type: </label>
+                            <select
+                              name="fuelType"
+                              value={vehicleData.fuelType}
+                              onChange={handleChange}
+                            >
+                              <option value="Petrol">Petrol</option>
+                              <option value="Diesel">Diesel</option>
+                              <option value="Electric">Electric</option>
+                              <option value="Hybrid">Hybrid</option>
+                              <option value="CNG">CNG</option>
+                            </select>
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="manufacturedCountry">Manufactured Country: </label>
+                            <input
+                              type="text"
+                              name="manufacturedCountry"
+                              value={vehicleData.manufacturedCountry}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="assembled">Assembled: </label>
+                            <input
+                              type="checkbox"
+                              name="assembled"
+                              checked={vehicleData.assembled}
+                              onChange={handleCheckboxChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="vehicleType">Vehicle Type: </label>
+                            <select
+                              name="vehicleType"
+                              value={vehicleData.vehicleType}
+                              onChange={handleChange}
+                            >
+                              <option value="Car">Car</option>
+                              <option value="Bike">Motorcycle</option>
+                              <option value="Truck">Truck</option>
+                              <option value="Van">Van</option>
+                              <option value="Cab">Cab</option>
+                            </select>
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="brand">Brand: </label>
+                            <input
+                              type="text"
+                              name="brand"
+                              value={vehicleData.brand}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="style">Style: </label>
+                            <input
+                              type="text"
+                              name="style"
+                              value={vehicleData.style}
+                              onChange={handleChange}
+                            />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="model">Model: </label>
+                            <input
+                              type="text"
+                              name="model"
+                              value={vehicleData.model}
+                              onChange={handleChange}
+                            />
+                          </div>
                         </div>
-                        <div className="d1-flex justify-center align-items-center">
-                          <button
-                            type="submit"
-                            className="back__btn me-4"
-                          >
-                            Submit
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </Col>
-                </Row>
 
                 <Row>
                   <Col lg="12">
@@ -212,6 +375,23 @@ const AddVehicle = () => {
                     </form>
                   </Col>
                 </Row>
+
+                       <div className="d1-flex justify-center align-items-center">
+                          <button
+                            type="submit"
+                            className="back__btn me-4"
+                          >
+                            Submit
+                          </button>
+                        </div>
+
+                      </form>
+                    </div>
+                  </Col>
+                </Row>
+
+               
+                
               </div>
             </Col>
           </Row>

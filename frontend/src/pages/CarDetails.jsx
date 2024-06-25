@@ -45,7 +45,21 @@ const CarDetails = () => {
         const singleCarItem = await axios.get(
           `http://localhost:3001/api/v1/vehicles/findOneVehicle/${slug}`
         );
-        setVehicleData(singleCarItem.data[0]);
+  //       setVehicleData(singleCarItem.data[0]);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log(error);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, [slug]);
+        const vehicle = singleCarItem.data[0];
+        setVehicleData({
+          ...vehicle,
+          dimensions: vehicle.dimensions || { length: 0, width: 0, height: 0 }
+        });
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -56,10 +70,10 @@ const CarDetails = () => {
     fetchData();
   }, [slug]);
 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-  
     if (["height", "width", "length"].includes(name)) {
       setVehicleData({
         ...vehicleData,
@@ -81,7 +95,7 @@ const CarDetails = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTg4OTMyMjAsImV4cCI6MTcxODk3OTYyMH0.WP1qonRc-BN__9Yfj7UitMepXNzp76oV_BomLRTdFfA";
+      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTkzMjYwMzUsImV4cCI6MTcxOTQxMjQzNX0.kuw6Ez2YPI4eU62Af2vf0Lgc9rc12qGU2DT-5qTVWIg";
       // localStorage.getItem("token");
 
       const config = {
@@ -115,7 +129,8 @@ const CarDetails = () => {
       const formData = new FormData();
       formData.append("image", selectedImage);
 
-      const token = localStorage.getItem("token");
+      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTkzMjYwMzUsImV4cCI6MTcxOTQxMjQzNX0.kuw6Ez2YPI4eU62Af2vf0Lgc9rc12qGU2DT-5qTVWIg";
+      // localStorage.getItem("token");
 
       const config = {
         headers: {
@@ -154,7 +169,6 @@ const CarDetails = () => {
                   <Col lg="12">
                   <form className="image-upload-form" >
                     
-                  
 
                     <div className="car-image-container" style={{marginTop:"100px"}}>
                       {vehicleData.album && vehicleData.album.length > 0 && (
@@ -215,9 +229,8 @@ const CarDetails = () => {
                       <form onSubmit={handleSubmit}>
 
                       <h4 className="font-semibold">
-                   {vehicleData.brand} - {vehicleData.model}
-                  </h4>
-                        
+                      {vehicleData.brand} - {vehicleData.model}
+                      </h4>
 
                         <div className="car__item-info">
                           <div className="info-group">
@@ -259,8 +272,7 @@ const CarDetails = () => {
                               type="text"
                               name="companyName"
                               value={vehicleData.companyName}
-                              onChange={handleChange}
-                            />
+                              onChange={handleChange} />
                           </div>
                           <div className="info-group">
                             <label htmlFor="numberOfDoors">No. of Doors: </label>
@@ -268,8 +280,7 @@ const CarDetails = () => {
                               type="number"
                               name="numberOfDoors"
                               value={vehicleData.numberOfDoors}
-                              onChange={handleChange}
-                            />
+                              onChange={handleChange} />
                           </div>
                           <div className="info-group">
                             <label htmlFor="color">Color: </label>
@@ -277,8 +288,7 @@ const CarDetails = () => {
                               type="text"
                               name="color"
                               value={vehicleData.color}
-                              onChange={handleChange}
-                            />
+                              onChange={handleChange} />
                           </div>
                           <div className="info-group">
                             <label htmlFor="seatingCapacity">
@@ -392,7 +402,7 @@ const CarDetails = () => {
                               onChange={handleChange}
                             >
                               <option value="Car">Car</option>
-                              <option value="Bike">Motorcycle</option>
+                              <option value="Bike">Bike</option>
                               <option value="Truck">Truck</option>
                               <option value="Van">Van</option>
                               <option value="Cab">Cab</option>
@@ -456,97 +466,3 @@ const CarDetails = () => {
 };
 
 export default CarDetails;
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from "react";
-// import { useParams } from "react-router-dom";
-// import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from "reactstrap";
-// import axios from "axios";
-
-// const CarDetails = () => {
-//   const { vehicleId } = useParams();
-//   const [formData, setFormData] = useState({
-//     vehicleId: '',
-//     chassisNumber: '',
-//     engineNo: '',
-//     vehicleState: '',
-//     companyName: '',
-//     numberOfDoors: 1,
-//     color: '',
-//     seatingCapacity: 1,
-//     condition: '',
-//     length: 0,
-//     height: 0,
-//     width: 0,
-//     vehiclePrice: '',
-//     fuelType: 'Petrol',
-//     manufacturedCountry: '',
-//     assembled: false,
-//     vehicleType: 'car',
-//     brand: '',
-//     style: '',
-//     model: '',
-//     manufacturedYear: new Date().getFullYear(),
-//   });
-
-//   useEffect(() => {
-//     const fetchVehicleDetails = async () => {
-//       try {
-//         const response = await axios.get(`http://localhost:3001/api/v1/vehicles/findOneVehicle/${vehicleId}`);
-//         setFormData(response.data);
-//       } catch (error) {
-//         console.error("Error fetching vehicle details:", error);
-//       }
-//     };
-
-//     fetchVehicleDetails();
-//   }, [vehicleId]);
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       await axios.put(`http://localhost:3001/api/v1/vehicles/editVehicle/`, formData);
-//       console.log("Vehicle details updated successfully");
-//       // Optionally, you can redirect the user to another page or show a success message
-//     } catch (error) {
-//       console.error("Error updating vehicle details:", error);
-//     }
-//   };
-
-//   return (
-//     <Container>
-//       <Row>
-//         <Col md={6}>
-//           <h3>Edit Car Details</h3>
-//           <Form onSubmit={handleSubmit}>
-//             {/* Add form fields for vehicle details */}
-//             {/* Example: */}
-//             <FormGroup>
-//               <Label for="brand">Brand</Label>
-//               <Input
-//                 type="text"
-//                 name="brand"
-//                 id="brand"
-//                 value={formData.brand || ''} // Check if formData.brand is undefined and default to empty string
-//                 onChange={handleChange}
-//               />
-//             </FormGroup>
-//             {/* Repeat this pattern for other fields */}
-//             <Button type="submit" color="primary">Submit</Button>
-//           </Form>
-//         </Col>
-//       </Row>
-//     </Container>
-//   );
-// };
-
-// export default CarDetails;

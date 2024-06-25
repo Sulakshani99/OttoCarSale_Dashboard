@@ -10,6 +10,12 @@ const OrderItem = ({ item }) => {
 
   const { orderedDate, customerName, _id } = item;
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString(); // This will include both date and time
+    // return date.toLocaleDateString(); // This will include only date
+  };
+
   const handleDelete = async () => {
     const confirmDelete = window.confirm("Are you sure you want to delete?");
     if (confirmDelete) {
@@ -30,7 +36,7 @@ const OrderItem = ({ item }) => {
         <div className="order__item-info">
           <div className="order__item-data">
             <span className="order__item-label">Ordered Date:</span>
-            <span className="order__item-value">{orderedDate}</span>
+            <span className="order__item-value">{formatDate(orderedDate)}</span>
           </div>
           <div className="order__item-data">
             <span className="order__item-label">Customer Name:</span>

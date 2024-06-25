@@ -16,11 +16,11 @@ const navLinks = [
     display: "Order Listing",
   },
 
-  {
-    path: "/settings",
-    icon: "ri-settings-2-line",
-    display: "Settings",
-  },
+  // {
+  //   path: "/settings",
+  //   icon: "ri-settings-2-line",
+  //   display: "Settings",
+  // },
 ];
 
 export default navLinks;

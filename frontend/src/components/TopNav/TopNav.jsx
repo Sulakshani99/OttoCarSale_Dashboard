@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 import profileImg from "../../assets/images/profile-02.png";
 import "../../styles/top-nav.css";
@@ -9,16 +8,14 @@ const TopNav = () => {
     <div className="top__nav">
       <div className="top__nav-wrapper">
         <div className="">
-          {/* <input type="text" placeholder="search or type" /> 
-           <span>
-            <i class="ri-search-line"></i>
-          </span> */}
         </div>
         
         <div className="top__nav-right">
           <span className="notification">
+          <Link to="/orders">
             <i class="ri-notification-3-line"></i>
             <span className="badge">1</span>
+            </Link>
           </span>
           <div className="profile">
             <Link to="/settings">
