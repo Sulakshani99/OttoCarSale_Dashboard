@@ -39,7 +39,7 @@ const CarItem = ({ item }) => {
       <div className="car__image">
         <div className="car-image-container">
           {album && album.length > 0 && (
-            <img src={album[0].photoURL} alt="Vehicle" className="w-100" />
+            <img src={`http://localhost:4000/public/${album[0].photoURL}`} alt="Vehicle" className="w-100" />
           )}
           {/* {album && album.length > 0 ? (
             <img src={album[0].photoURL} alt="Vehicle" className="w-100" />

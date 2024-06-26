@@ -35,9 +35,11 @@ const CarDetails = () => {
     style: "",
     model: "",
     manufacturedYear: new Date().getFullYear(),
+    album: [] // Add album array initialization
   });
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,16 +47,6 @@ const CarDetails = () => {
         const singleCarItem = await axios.get(
           `http://localhost:3001/api/v1/vehicles/findOneVehicle/${slug}`
         );
-  //       setVehicleData(singleCarItem.data[0]);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.log(error);
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [slug]);
         const vehicle = singleCarItem.data[0];
         setVehicleData({
           ...vehicle,
@@ -69,7 +61,6 @@ const CarDetails = () => {
 
     fetchData();
   }, [slug]);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -111,7 +102,7 @@ const CarDetails = () => {
       );
 
       console.log("Updated Form Data:", vehicleData);
-      alert("Vehicle updateded successfully");
+      alert("Vehicle updated successfully");
       navigate("/selling");
     } catch (error) {
       console.error("Error:", error);
@@ -124,33 +115,36 @@ const CarDetails = () => {
 
   const handleImageUpload = async (e) => {
     e.preventDefault();
+    setIsUploading(true);
 
     try {
       const formData = new FormData();
       formData.append("image", selectedImage);
 
-      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTkzMjYwMzUsImV4cCI6MTcxOTQxMjQzNX0.kuw6Ez2YPI4eU62Af2vf0Lgc9rc12qGU2DT-5qTVWIg";
-      // localStorage.getItem("token");
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
       const response = await axios.post(
-        `http://localhost:3001/api/v1/vehicles/uploadImage/${slug}`,
-        formData,
-        config
+        "http://localhost:4000/api/v1/upload",
+        formData     
       );
-      console.log("Image uploaded successfully:", response.data);
 
-      const updatedVehicle = await axios.get(
-        `http://localhost:3001/api/v1/vehicles/findOneVehicle/${slug}`
+      console.log("Image uploaded successfully:", response.data);
+      const imagePath = response.data.filepath;
+
+      setVehicleData((prevData) => {
+        const newImages = [...prevData.album, { photoURL: imagePath }];
+        return {
+          ...prevData,
+          album: newImages
+        };
+      });
+
+      const updatedVehicle = await axios.get(`http://localhost:3001/api/v1/vehicles/findOneVehicle/${slug}`
       );
       setVehicleData(updatedVehicle.data[0]);
+
     } catch (error) {
       console.error("Error uploading image:", error);
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -167,45 +161,43 @@ const CarDetails = () => {
               <div className="car-details-content">
                 <Row>
                   <Col lg="12">
-                  <form className="image-upload-form" >
-                    
-
-                    <div className="car-image-container" style={{marginTop:"100px"}}>
-                      {vehicleData.album && vehicleData.album.length > 0 && (
-                        <img
-                          src={`http://localhost:4000/public/file/39c810e8-f1b7-4556-b70b-a927b08e21f2.png`}
-                          alt={`Image 1`}
-                          className="car-image w-100"
-                        />
-                      )}
-                      <div className="car-image1-container1">
-                        {vehicleData.album &&
-                          vehicleData.album.length > 0 &&
-                          vehicleData.album.slice(0, 4).map((image, index) => (
-                            <img
-                              key={index}
-                              src={`http://localhost:4000/public/${image.photoURL}`}
-                              alt={`Image ${index + 1}`}
-                              className="car-image1 w-100"
-                            />
-                          ))}
-                      </div>
-                      <div className="car-image1-container1">
-                        {vehicleData.album &&
-                          vehicleData.album.length > 4 &&
-                          vehicleData.album
-                            .slice(4)
-                            .map((image, index) => (
+                    <form className="image-upload-form" >
+                      <div className="car-image-container" style={{marginTop:"100px"}}>
+                        {vehicleData.album && vehicleData.album.length > 0 && (
+                          <img
+                            src={`http://localhost:4000/public/${vehicleData.album[0].photoURL}`}
+                            alt={`Image 1`}
+                            className="car-image w-100"
+                          />
+                        )}
+                        <div className="car-image1-container1">
+                          {vehicleData.album &&
+                            vehicleData.album.length > 0 &&
+                            vehicleData.album.slice(0, 4).map((image, index) => (
                               <img
-                                key={index + 4}
-                                src={image.photoURL}
-                                alt={`Image ${index + 5}`}
+                                key={index}
+                                src={`http://localhost:4000/public/${image.photoURL}`}
+                                alt={`Image ${index + 1}`}
                                 className="car-image1 w-100"
                               />
                             ))}
+                        </div>
+                        <div className="car-image1-container1">
+                          {vehicleData.album &&
+                            vehicleData.album.length > 4 &&
+                            vehicleData.album
+                              .slice(4)
+                              .map((image, index) => (
+                                <img
+                                  key={index + 4}
+                                  src={image.photoURL}
+                                  alt={`Image ${index + 5}`}
+                                  className="car-image1 w-100"
+                                />
+                              ))}
+                        </div>
                       </div>
-                    </div>
-                  </form>
+                    </form>
 
                     <form
                       onSubmit={handleImageUpload}
@@ -218,19 +210,16 @@ const CarDetails = () => {
                       />
                       <button type="submit">Upload Image</button>
                     </form>
-
                   </Col>
                 </Row>
 
                 <Row>
                   <Col lg="12">
                     <div className="car__item-content">
-                      
                       <form onSubmit={handleSubmit}>
-
-                      <h4 className="font-semibold">
-                      {vehicleData.brand} - {vehicleData.model}
-                      </h4>
+                        <h4 className="font-semibold">
+                          {vehicleData.brand} - {vehicleData.model}
+                        </h4>
 
                         <div className="car__item-info">
                           <div className="info-group">
@@ -291,15 +280,36 @@ const CarDetails = () => {
                               onChange={handleChange} />
                           </div>
                           <div className="info-group">
-                            <label htmlFor="seatingCapacity">
-                              Seating Capacity:{" "}
-                            </label>
+                            <label htmlFor="seatingCapacity">Seating Capacity: </label>
                             <input
                               type="number"
                               name="seatingCapacity"
                               value={vehicleData.seatingCapacity}
-                              onChange={handleChange}
-                            />
+                              onChange={handleChange} />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="length">Length: </label>
+                            <input
+                              type="number"
+                              name="length"
+                              value={vehicleData.dimensions?.length}
+                              onChange={handleChange} />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="width">Width: </label>
+                            <input
+                              type="number"
+                              name="width"
+                              value={vehicleData.dimensions?.width}
+                              onChange={handleChange} />
+                          </div>
+                          <div className="info-group">
+                            <label htmlFor="height">Height: </label>
+                            <input
+                              type="number"
+                              name="height"
+                              value={vehicleData.dimensions?.height}
+                              onChange={handleChange} />
                           </div>
                           <div className="info-group">
                             <label htmlFor="condition">Condition: </label>
@@ -307,58 +317,15 @@ const CarDetails = () => {
                               type="text"
                               name="condition"
                               value={vehicleData.condition}
-                              onChange={handleChange}
-                            />
+                              onChange={handleChange} />
                           </div>
                           <div className="info-group">
-                            <label htmlFor="manufacturedYear">
-                              Manufactured Year:{" "}
-                            </label>
-                            <input
-                              type="text"
-                              name="manufacturedYear"
-                              value={vehicleData.manufacturedYear}
-                              onChange={handleChange}
-                            />
-                          </div>
-                          <div className="info-group">
-                            <label htmlFor="height">Height (m): </label>
-                            <input
-                              type="number"
-                              step="0.01"
-                              name="height"
-                              value={vehicleData.dimensions.height}
-                              onChange={handleChange}
-                            />
-                          </div>
-                          <div className="info-group">
-                            <label htmlFor="width">Width (m): </label>
-                            <input
-                              type="number"
-                              step="0.01"
-                              name="width"
-                              value={vehicleData.dimensions.width}
-                              onChange={handleChange}
-                            />
-                          </div>
-                          <div className="info-group">
-                            <label htmlFor="length">Length (m): </label>
-                            <input
-                              type="number"
-                              step="0.01"
-                              name="length"
-                              value={vehicleData.dimensions.length}
-                              onChange={handleChange}
-                            />
-                          </div>
-                          <div className="info-group">
-                            <label htmlFor="vehiclePrice">Vehicle Price (Rs): </label>
+                            <label htmlFor="vehiclePrice">Price: </label>
                             <input
                               type="text"
                               name="vehiclePrice"
                               value={vehicleData.vehiclePrice}
-                              onChange={handleChange}
-                            />
+                              onChange={handleChange} />
                           </div>
                           <div className="info-group">
                             <label htmlFor="fuelType">Fuel Type: </label>
@@ -371,19 +338,15 @@ const CarDetails = () => {
                               <option value="Diesel">Diesel</option>
                               <option value="Electric">Electric</option>
                               <option value="Hybrid">Hybrid</option>
-                              <option value="CNG">CNG</option>
                             </select>
                           </div>
                           <div className="info-group">
-                            <label htmlFor="manufacturedCountry">
-                              Manufactured Country:{" "}
-                            </label>
+                            <label htmlFor="manufacturedCountry">Manufactured Country: </label>
                             <input
                               type="text"
                               name="manufacturedCountry"
                               value={vehicleData.manufacturedCountry}
-                              onChange={handleChange}
-                            />
+                              onChange={handleChange} />
                           </div>
                           <div className="info-group">
                             <label htmlFor="assembled">Assembled: </label>
@@ -391,8 +354,7 @@ const CarDetails = () => {
                               type="checkbox"
                               name="assembled"
                               checked={vehicleData.assembled}
-                              onChange={handleCheckboxChange}
-                            />
+                              onChange={handleCheckboxChange} />
                           </div>
                           <div className="info-group">
                             <label htmlFor="vehicleType">Vehicle Type: </label>
@@ -402,10 +364,10 @@ const CarDetails = () => {
                               onChange={handleChange}
                             >
                               <option value="Car">Car</option>
-                              <option value="Bike">Bike</option>
                               <option value="Truck">Truck</option>
-                              <option value="Van">Van</option>
-                              <option value="Cab">Cab</option>
+                              <option value="Motorcycle">Motorcycle</option>
+                              <option value="Bus">Bus</option>
+                              <option value="SUV">SUV</option>
                             </select>
                           </div>
                           <div className="info-group">
@@ -414,8 +376,7 @@ const CarDetails = () => {
                               type="text"
                               name="brand"
                               value={vehicleData.brand}
-                              onChange={handleChange}
-                            />
+                              onChange={handleChange} />
                           </div>
                           <div className="info-group">
                             <label htmlFor="style">Style: </label>
@@ -423,8 +384,7 @@ const CarDetails = () => {
                               type="text"
                               name="style"
                               value={vehicleData.style}
-                              onChange={handleChange}
-                            />
+                              onChange={handleChange} />
                           </div>
                           <div className="info-group">
                             <label htmlFor="model">Model: </label>
@@ -432,28 +392,21 @@ const CarDetails = () => {
                               type="text"
                               name="model"
                               value={vehicleData.model}
-                              onChange={handleChange}
-                            />
+                              onChange={handleChange} />
                           </div>
-                          
+                          <div className="info-group">
+                            <label htmlFor="manufacturedYear">Manufactured Year: </label>
+                            <input
+                              type="number"
+                              name="manufacturedYear"
+                              value={vehicleData.manufacturedYear}
+                              onChange={handleChange} />
+                          </div>
                         </div>
-                        
+
+                        <button type="submit" className="btn">Update Vehicle</button>
                       </form>
                     </div>
-
- 
-                          <div className="d-flex justify-center align-items-center">
-                            {/* <button type="button" className="back1__btn me-4">
-                              <Link to="/vehicles">Back</Link>
-                            </button> */}
-                            <button
-                              type="submit"
-                              className="submit__btn" onClick={handleSubmit}
-                            >
-                              Save
-                            </button>
-                          </div>
-
                   </Col>
                 </Row>
               </div>

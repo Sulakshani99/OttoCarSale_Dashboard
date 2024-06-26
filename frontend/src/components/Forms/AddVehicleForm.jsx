@@ -95,33 +95,34 @@ const AddVehicle = () => {
   const handleImageNameChange = (e) => {
     setImageName(e.target.value);
   };
-
+  
   const handleImageUpload = async (e) => {
     e.preventDefault();
     setIsUploading(true);
+
     try {
       const formData = new FormData();
       formData.append("image", selectedImage, imageName);
 
-      const token = "your_token_here";
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
-
       const response = await axios.post(
         "http://localhost:4000/api/v1/upload",
-        formData,
-        config
+        formData     
       );
 
       console.log("Image uploaded successfully:", response.data);
-      const imagePath = response.data.path;
-      setVehicleData((prevData) => ({
-        ...prevData,
-        images: [...prevData.images, imagePath]
-      }));
+      const imagePath = response.data.filepath;
+      
+
+      setVehicleData((prevData) => {
+        const newImages =[]
+        newImages.push(imagePath)
+        // sconst newImage = prevData.images ? [...prevData.images, imagePath] : [imagePath];
+        console.log("New images array:", newImages); // Added logging
+        return {
+          ...prevData,
+          images: newImages
+        };
+      });
 
     } catch (error) {
       console.error("Error uploading image:", error);
