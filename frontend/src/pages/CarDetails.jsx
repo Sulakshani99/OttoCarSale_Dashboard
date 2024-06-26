@@ -173,7 +173,7 @@ const CarDetails = () => {
                     <div className="car-image-container" style={{marginTop:"100px"}}>
                       {vehicleData.album && vehicleData.album.length > 0 && (
                         <img
-                          src={vehicleData.album[0].photoURL}
+                          src={`http://localhost:4000/public/file/39c810e8-f1b7-4556-b70b-a927b08e21f2.png`}
                           alt={`Image 1`}
                           className="car-image w-100"
                         />
@@ -184,7 +184,7 @@ const CarDetails = () => {
                           vehicleData.album.slice(0, 4).map((image, index) => (
                             <img
                               key={index}
-                              src={image.photoURL}
+                              src={`http://localhost:4000/public/${image.photoURL}`}
                               alt={`Image ${index + 1}`}
                               className="car-image1 w-100"
                             />

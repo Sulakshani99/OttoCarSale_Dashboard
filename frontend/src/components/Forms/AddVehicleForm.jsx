@@ -32,11 +32,13 @@ const AddVehicle = () => {
     style: "",
     model: "",
     manufacturedYear: new Date().getFullYear(),
+    images: []
   });
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [imageName, setImageName] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -96,13 +98,12 @@ const AddVehicle = () => {
 
   const handleImageUpload = async (e) => {
     e.preventDefault();
+    setIsUploading(true);
     try {
       const formData = new FormData();
       formData.append("image", selectedImage, imageName);
 
-      const token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbi5kb2VAZXhhbXBsZS5jb20iLCJ1c2VySWQiOjYsInJvbGUiOlt7ImF1dGhvcml0eSI6IkFETUlOIn1dLCJpYXQiOjE3MTkzMjYwMzUsImV4cCI6MTcxOTQxMjQzNX0.kuw6Ez2YPI4eU62Af2vf0Lgc9rc12qGU2DT-5qTVWIg";
-      // localStorage.getItem("token");
-
+      const token = "your_token_here";
       const config = {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -110,13 +111,22 @@ const AddVehicle = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:3001/api/v1/vehicles/uploadImage",
+        "http://localhost:4000/api/v1/upload",
         formData,
         config
       );
+
       console.log("Image uploaded successfully:", response.data);
+      const imagePath = response.data.path;
+      setVehicleData((prevData) => ({
+        ...prevData,
+        images: [...prevData.images, imagePath]
+      }));
+
     } catch (error) {
       console.error("Error uploading image:", error);
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -131,11 +141,10 @@ const AddVehicle = () => {
                 <Row>
                   <Col lg="12" md="6">
                     <div className="car1__item-content">
-                      <form className="image-upload-form">
-                        <h2 className="font-semibold">Add New Vehicle</h2>
-                      </form>
+                      <h2 className="font-semibold">Add New Vehicle</h2>
                       <form onSubmit={handleSubmit}>
                         <div className="car__item-info">
+                          {/* Your form inputs here */}
                           <div className="info-group">
                             <label htmlFor="vehicleId">Vehicle ID: </label>
                             <input
@@ -339,44 +348,47 @@ const AddVehicle = () => {
                             />
                           </div>
                         </div>
+                     
+                        <Row>
+                          <Col lg="12">
+                            <div className="image-upload-form inline-table">
+                              <input
+                                type="file"
+                                onChange={handleImageChange}
+                                accept="image/*"
+                              />
+                              {imagePreview && (
+                                <div className="car-image-container">
+                                  <img
+                                    src={imagePreview}
+                                    alt="Selected"
+                                    className="car-image w-100"
+                                  />
+                                </div>
+                              )}
+                              {selectedImage && (
+                                <div className="info-group">
+                                  <label htmlFor="imageName">Image Name: </label>
+                                  <input
+                                    type="text"
+                                    name="imageName"
+                                    value={imageName}
+                                    onChange={handleImageNameChange}
+                                  />
+                                </div>
+                              )}
+                              <button
+                                type="button"
+                                onClick={handleImageUpload}
+                                disabled={isUploading}
+                              >
+                                {isUploading ? "Uploading..." : "Upload Image"}
+                              </button>
+                            </div>
+                          </Col>
+                        </Row>
 
-                <Row>
-                  <Col lg="12">
-                    <form
-                      onSubmit={handleImageUpload}
-                      className="image-upload-form inline-table"
-                    >
-                      <input
-                        type="file"
-                        onChange={handleImageChange}
-                        accept="image/*"
-                      />
-                      {imagePreview && (
-                        <div className="car-image-container">
-                          <img
-                            src={imagePreview}
-                            alt="Selected"
-                            className="car-image w-100"
-                          />
-                        </div>
-                      )}
-                      {selectedImage && (
-                        <div className="info-group">
-                          <label htmlFor="imageName">Image Name: </label>
-                          <input
-                            type="text"
-                            name="imageName"
-                            value={imageName}
-                            onChange={handleImageNameChange}
-                          />
-                        </div>
-                      )}
-                      <button type="submit">Upload Image</button>
-                    </form>
-                  </Col>
-                </Row>
-
-                       <div className="d1-flex justify-center align-items-center">
+                        <div className="d1-flex justify-center align-items-center">
                           <button
                             type="submit"
                             className="back__btn me-4"
@@ -384,14 +396,10 @@ const AddVehicle = () => {
                             Submit
                           </button>
                         </div>
-
                       </form>
                     </div>
                   </Col>
                 </Row>
-
-               
-                
               </div>
             </Col>
           </Row>

@@ -84,7 +84,8 @@
 }
 
 .logout-button:hover {
-  background: #852714;
+  background: #f9a826;
+  color: black;
 }
 
 main {
