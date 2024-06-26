@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-node@v3
 
     
-    - name: Install dependencies
+    - name: Install dependencie
     - working-directory: frontend
       run: npm ci
     
