@@ -18,7 +18,7 @@ jobs:
 
     - name: cd
       run: |
-        cd frontend
+        cd /home/ubuntu/actions-runner/_work/OttoCarSale_Dashboard/OttoCarSale_Dashboard/frontend
         ls
     
     - name: Use Node.js ${{ matrix.node-version }}
