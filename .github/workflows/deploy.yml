@@ -19,6 +19,7 @@ jobs:
     - name: cd
       run: |
         cd frontend
+        ls
     
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -27,11 +28,9 @@ jobs:
         cache: 'npm'
     
     - name: Install dependencies
-      working-directory: frontend
       run: npm ci
     
     - name: Build project
-      working-directory: frontend
       run: npm run build --if-present
 
     - name: Clear contents of /var/www/html
